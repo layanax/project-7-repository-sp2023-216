@@ -14,7 +14,7 @@ import components.utilities.Tokenizer;
  * JUnit test fixture for {@code Statement}'s constructor and kernel methods.
  *
  * @author Wayne Heym
- * @author Put your name here
+ * @author Layan Abdallah & Oak Hodous
  *
  */
 public abstract class StatementTest {
@@ -23,8 +23,14 @@ public abstract class StatementTest {
      * The name of a file containing a sequence of BL statements.
      */
     private static final String FILE_NAME_1 = "data/statement-sample.bl";
-
-    // TODO - define file names for additional test inputs
+    /**
+     * The name of a file containing a sequence of BL statements.
+     */
+    private static final String FILE_NAME_2 = "data/statement-test1.bl";
+    /**
+     * The name of a file containing a sequence of BL statements.
+     */
+    private static final String FILE_NAME_3 = "data/statement-test2.bl";
 
     /**
      * Invokes the {@code Statement} constructor for the implementation under

@@ -37,7 +37,8 @@ public final class ProgramTester {
         /*
          * Input program using the library implementation Program1
          */
-        out.print("  Reading program using the library implementation Program1...");
+        out.print(
+                "  Reading program using the library implementation Program1...");
         SimpleReader file = new SimpleReader1L(fileName);
         Program p1 = new Program1();
         p1.parse(file);
@@ -46,7 +47,8 @@ public final class ProgramTester {
         /*
          * Input program again using the student implementation Program2
          */
-        out.print("  Reading program using the student implementation Program2...");
+        out.print(
+                "  Reading program using the student implementation Program2...");
         file = new SimpleReader1L(fileName);
         Program p2 = new Program2();
         p2.parse(file);

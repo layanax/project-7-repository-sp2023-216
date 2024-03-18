@@ -1,0 +1,35 @@
+Test Plan for Project #7
+
+METHODS TO COMPLETE:
+ 
+Program2.java:
+createNewRep
+setName (LAYAN)
+name (OAK)
+newContext (LAYAN)
+swapContext (OAK)
+newBody (LAYAN)
+swapBody (OAK)
+
+Statement2.java:
+createNewRep
+kind (LAYAN)
+addToBlock (OAK)
+removeFromBlock (LAYAN)
+lengthOfBlock (OAK)
+assembleIfElse (LAYAN)
+disassembleIfElse (OAK)
+assembleWhile (LAYAN)
+disassembleWhile (OAK)
+assembleCall (LAYAN)
+disassembleCall (OAK)
+
+TESTS TO COMPLETE:
+
+ProgramTest:
+create file names
+additional tests for ProgramKernel (BOTH)
+
+StatementTest:
+create file names
+additional tests for StatementKernel (BOTH)

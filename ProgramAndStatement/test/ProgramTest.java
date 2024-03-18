@@ -13,7 +13,7 @@ import components.statement.Statement;
  * JUnit test fixture for {@code Program}'s constructor and kernel methods.
  *
  * @author Wayne Heym
- * @author Put your name here
+ * @author Layan Abdallah & Oak Hodous
  *
  */
 public abstract class ProgramTest {
@@ -22,8 +22,14 @@ public abstract class ProgramTest {
      * The name of a file containing a BL program.
      */
     private static final String FILE_NAME_1 = "data/program-sample.bl";
-
-    // TODO - define file names for additional test inputs
+    /**
+     * The name of a file containing a BL program.
+     */
+    private static final String FILE_NAME_2 = "data/program-test1.bl";
+    /**
+     * The name of a file containing a BL program.
+     */
+    private static final String FILE_NAME_3 = "data/program-test2.bl";
 
     /**
      * Invokes the {@code Program} constructor for the implementation under test
