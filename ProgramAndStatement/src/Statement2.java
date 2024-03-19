@@ -233,8 +233,7 @@ public class Statement2 extends StatementSecondary {
         assert this.kind() == Kind.BLOCK : ""
                 + "Violation of: [this is a BLOCK statement]";
 
-        int length = this.rep.numberOfSubtrees();
-        return length;
+        return this.rep.numberOfSubtrees();
     }
 
     @Override
@@ -315,6 +314,7 @@ public class Statement2 extends StatementSecondary {
         localS1.rep = seq.remove(0);
         localS2.rep = seq.remove(0);
         this.createNewRep();
+
         return c;
 
     }
@@ -350,6 +350,7 @@ public class Statement2 extends StatementSecondary {
         Condition c = root.condition();
         localS.rep = seq.remove(0);
         this.createNewRep();
+
         return c;
 
     }
@@ -375,6 +376,7 @@ public class Statement2 extends StatementSecondary {
         StatementLabel root = this.rep.disassemble(seq);
         String instruction = root.instruction;
         this.createNewRep();
+
         return instruction;
     }
 
