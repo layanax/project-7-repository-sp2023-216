@@ -178,10 +178,7 @@ public class Program2 extends ProgramSecondary {
     @Override
     public final String name() {
 
-        // TODO - fill in body
-
-        // Fix this line to return the result.
-        return null;
+        return this.name;
 
     }
 
@@ -204,7 +201,10 @@ public class Program2 extends ProgramSecondary {
         assert allBlocks(c) : "Violation of: bodies in c"
                 + " are all BLOCK statements";
 
-        // TODO - fill in body
+        Map<String, Statement> tempContext = this.newContext();
+        tempContext.transferFrom(this.context);
+        this.context.transferFrom(c);
+        c.transferFrom(tempContext);
 
     }
 
@@ -221,7 +221,10 @@ public class Program2 extends ProgramSecondary {
         assert b instanceof Statement1 : "Violation of: b is a Statement1";
         assert b.kind() == Kind.BLOCK : "Violation of: b is a BLOCK statement";
 
-        // TODO - fill in body
+        Statement tempBody = this.newBody();
+        tempBody.transferFrom(this.body);
+        this.body.transferFrom(b);
+        b.transferFrom(tempBody);
 
     }
 
