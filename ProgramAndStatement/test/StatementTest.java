@@ -457,6 +457,250 @@ public abstract class StatementTest {
         assertEquals(nRef, nTest);
     }
 
-    // TODO - provide additional test cases to thoroughly test StatementKernel
+    //REMOVE FROM BLOCK TESTS!!!
 
+    /**
+     * test removing from front leaving non empty 1
+     */
+    @Test
+    public final void RemoveFromBlockTest1() {
+        Statement sTest = this.createFromFileTest(FILE_NAME_1);
+        Statement sRef = this.createFromFileRef(FILE_NAME_1);
+        Statement nRef = sRef.removeFromBlock(0);
+
+        Statement nTest = sTest.removeFromBlock(0);
+
+        assertEquals(sRef, sTest);
+        assertEquals(nRef, nTest);
+    }
+
+    /**
+     * test removing from front leaving non empty 2
+     */
+    @Test
+    public final void RemoveFromBlockTest2() {
+        Statement sTest = this.createFromFileTest(FILE_NAME_2);
+        Statement sRef = this.createFromFileRef(FILE_NAME_2);
+        Statement nRef = sRef.removeFromBlock(0);
+
+        Statement nTest = sTest.removeFromBlock(0);
+
+        assertEquals(sRef, sTest);
+        assertEquals(nRef, nTest);
+    }
+
+    /**
+     * test removing from front leaving non empty 3
+     */
+    @Test
+    public final void RemoveFromBlockTest3() {
+        Statement sTest = this.createFromFileTest(FILE_NAME_3);
+        Statement sRef = this.createFromFileRef(FILE_NAME_3);
+        Statement nRef = sRef.removeFromBlock(0);
+
+        Statement nTest = sTest.removeFromBlock(0);
+
+        assertEquals(sRef, sTest);
+        assertEquals(nRef, nTest);
+    }
+
+    //ASSEMBLE IF ELSE TESTS!!!
+    /**
+     * test assembling if else 1
+     */
+    @Test
+    public final void testAssembleIfElse1() {
+
+        final int ifElsePos = 2;
+        Statement blockTest = this.createFromFileTest(FILE_NAME_1);
+        Statement blockRef = this.createFromFileRef(FILE_NAME_1);
+        Statement emptyBlock = blockRef.newInstance();
+        Statement sourceTest = blockTest.removeFromBlock(ifElsePos);
+        Statement sRef = blockRef.removeFromBlock(ifElsePos);
+        Statement thenBlockTest = sourceTest.newInstance();
+        Statement elseBlockTest = sourceTest.newInstance();
+        Condition cTest = sourceTest.disassembleIfElse(thenBlockTest,
+                elseBlockTest);
+        Statement sTest = blockTest.newInstance();
+
+        sTest.assembleIfElse(cTest, thenBlockTest, elseBlockTest);
+
+        assertEquals(emptyBlock, thenBlockTest);
+        assertEquals(emptyBlock, elseBlockTest);
+        assertEquals(sRef, sTest);
+    }
+
+    @Test
+    /**
+     * test assembling if else 2
+     */
+    public final void testAssembleIfElse2() {
+        final int ifElsePos = 2;
+        Statement blockTest = this.createFromFileTest(FILE_NAME_2);
+        Statement blockRef = this.createFromFileRef(FILE_NAME_2);
+        Statement emptyBlock = blockRef.newInstance();
+        Statement sourceTest = blockTest.removeFromBlock(ifElsePos);
+        Statement sRef = blockRef.removeFromBlock(ifElsePos);
+        Statement thenBlockTest = sourceTest.newInstance();
+        Statement elseBlockTest = sourceTest.newInstance();
+        Condition cTest = sourceTest.disassembleIfElse(thenBlockTest,
+                elseBlockTest);
+        Statement sTest = blockTest.newInstance();
+
+        sTest.assembleIfElse(cTest, thenBlockTest, elseBlockTest);
+
+        assertEquals(emptyBlock, thenBlockTest);
+        assertEquals(emptyBlock, elseBlockTest);
+        assertEquals(sRef, sTest);
+    }
+
+    @Test
+    /**
+     * test assembling if else 3
+     */
+    public final void testAssembleIfElse3() {
+        final int ifElsePos = 4;
+        Statement blockTest = this.createFromFileTest(FILE_NAME_3);
+        Statement blockRef = this.createFromFileRef(FILE_NAME_3);
+        Statement emptyBlock = blockRef.newInstance();
+        Statement sourceTest = blockTest.removeFromBlock(ifElsePos);
+        Statement sRef = blockRef.removeFromBlock(ifElsePos);
+        Statement thenBlockTest = sourceTest.newInstance();
+        Statement elseBlockTest = sourceTest.newInstance();
+        Condition cTest = sourceTest.disassembleIfElse(thenBlockTest,
+                elseBlockTest);
+        Statement sTest = blockTest.newInstance();
+
+        sTest.assembleIfElse(cTest, thenBlockTest, elseBlockTest);
+
+        assertEquals(emptyBlock, thenBlockTest);
+        assertEquals(emptyBlock, elseBlockTest);
+        assertEquals(sRef, sTest);
+    }
+
+    //ASSEMBLE WHILE TESTS!!!
+    @Test
+    /**
+     * test assembling while 1
+     */
+    public final void testAssembleWhile1() {
+        Statement blockTest = this.createFromFileTest(FILE_NAME_1);
+        Statement blockRef = this.createFromFileRef(FILE_NAME_1);
+        Statement emptyBlock = blockRef.newInstance();
+        Statement sourceTest = blockTest.removeFromBlock(1);
+        Statement sourceRef = blockRef.removeFromBlock(1);
+        Statement nTest = sourceTest.newInstance();
+        Statement nRef = sourceRef.newInstance();
+        Condition cTest = sourceTest.disassembleIf(nTest);
+        Condition cRef = sourceRef.disassembleIf(nRef);
+        Statement sRef = sourceRef.newInstance();
+        sRef.assembleWhile(cRef, nRef);
+        Statement sTest = sourceTest.newInstance();
+
+        sTest.assembleWhile(cTest, nTest);
+
+        assertEquals(emptyBlock, nTest);
+        assertEquals(sRef, sTest);
+    }
+
+    /**
+     * test assembling while 2
+     */
+    @Test
+    public final void testAssembleWhile2() {
+        Statement blockTest = this.createFromFileTest(FILE_NAME_2);
+        Statement blockRef = this.createFromFileRef(FILE_NAME_2);
+        Statement emptyBlock = blockRef.newInstance();
+        Statement sourceTest = blockTest.removeFromBlock(1);
+        Statement sourceRef = blockRef.removeFromBlock(1);
+        Statement nTest = sourceTest.newInstance();
+        Statement nRef = sourceRef.newInstance();
+        Condition cTest = sourceTest.disassembleIf(nTest);
+        Condition cRef = sourceRef.disassembleIf(nRef);
+        Statement sRef = sourceRef.newInstance();
+        sRef.assembleWhile(cRef, nRef);
+        Statement sTest = sourceTest.newInstance();
+
+        sTest.assembleWhile(cTest, nTest);
+
+        assertEquals(emptyBlock, nTest);
+        assertEquals(sRef, sTest);
+    }
+
+    /**
+     * test assembling while 3
+     */
+    @Test
+    public final void testAssembleWhile3() {
+        Statement blockTest = this.createFromFileTest(FILE_NAME_3);
+        Statement blockRef = this.createFromFileRef(FILE_NAME_3);
+        Statement emptyBlock = blockRef.newInstance();
+        Statement sourceTest = blockTest.removeFromBlock(5);
+        Statement sourceRef = blockRef.removeFromBlock(5);
+        Statement nestedTest = sourceTest.newInstance();
+        Statement nestedRef = sourceRef.newInstance();
+        Condition cTest = sourceTest.disassembleIf(nestedTest);
+        Condition cRef = sourceRef.disassembleIf(nestedRef);
+        Statement sRef = sourceRef.newInstance();
+        sRef.assembleWhile(cRef, nestedRef);
+        Statement sTest = sourceTest.newInstance();
+
+        sTest.assembleWhile(cTest, nestedTest);
+
+        assertEquals(emptyBlock, nestedTest);
+        assertEquals(sRef, sTest);
+    }
+
+    //ASSEMBLE CALL TESTS!!!
+    @Test
+    /**
+     * Assemble call test 1
+     */
+    public final void testAssembleCall1() {
+
+        Statement sRef = this.constructorRef().newInstance();
+        Statement sTest = this.constructorTest().newInstance();
+
+        String name = "look-for-something";
+        sRef.assembleCall(name);
+
+        sTest.assembleCall(name);
+
+        assertEquals(sRef, sTest);
+    }
+
+    /**
+     * Assemble call test 2
+     */
+    @Test
+    public final void testAssembleCall2() {
+        /*
+         * Setup
+         */
+        Statement sRef = this.constructorRef().newInstance();
+        Statement sTest = this.constructorTest().newInstance();
+
+        String name = "TURNRIGHT";
+        sRef.assembleCall(name);
+
+        sTest.assembleCall(name);
+
+        assertEquals(sRef, sTest);
+    }
+
+    /**
+     * Assemble call test 3
+     */
+    @Test
+    public final void testAssembleCall3() {
+        Statement sRef = this.constructorRef().newInstance();
+        Statement sTest = this.constructorTest().newInstance();
+
+        String name = "do-something";
+        sRef.assembleCall(name);
+
+        sTest.assembleCall(name);
+
+        assertEquals(sRef, sTest);
+    }
 }

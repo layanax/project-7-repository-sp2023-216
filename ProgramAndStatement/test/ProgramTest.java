@@ -517,4 +517,146 @@ public abstract class ProgramTest {
         assertEquals(bodyRef, bodyTest);
     }
 
+    //SET NAME TESTS
+    /**
+     * set name test 1
+     */
+    @Test
+    public final void testSetName1() {
+        Program pTest = this.createFromFileTest(FILE_NAME_1);
+        Program pRef = this.createFromFileRef(FILE_NAME_1);
+        String newName = "NEW NAME";
+
+        pRef.setName(newName);
+        pTest.setName(newName);
+
+        assertEquals(pRef, pTest);
+        assertEquals(pRef.name(), pTest.name());
+    }
+
+    /**
+     * set name test 2
+     */
+    @Test
+    public final void testSetName2() {
+        Program pTest = this.createFromFileTest(FILE_NAME_2);
+        Program pRef = this.createFromFileRef(FILE_NAME_2);
+        String newName = "NEW NAME";
+
+        pRef.setName(newName);
+        pTest.setName(newName);
+
+        assertEquals(pRef, pTest);
+        assertEquals(pRef.name(), pTest.name());
+    }
+
+    /**
+     * set name test 3
+     */
+    @Test
+    public final void testSetName3() {
+        Program pTest = this.createFromFileTest(FILE_NAME_3);
+        Program pRef = this.createFromFileRef(FILE_NAME_3);
+        String newName = "NEW NAME";
+
+        pRef.setName(newName);
+        pTest.setName(newName);
+
+        assertEquals(pRef, pTest);
+        assertEquals(pRef.name(), pTest.name());
+    }
+
+    //NEW CONTEXT NAMES
+    /**
+     * Test new context 1
+     */
+    @Test
+    public final void testNewContext1() {
+        Program pTest = this.createFromFileTest(FILE_NAME_1);
+        Program pRef = this.createFromFileRef(FILE_NAME_1);
+        Map<String, Statement> cRef = pRef.newContext();
+
+        Map<String, Statement> cTest = pTest.newContext();
+
+        assertEquals(pRef, pTest);
+        assertEquals(cRef, cTest);
+    }
+
+    /**
+     * Test new context 2
+     */
+    @Test
+    public final void testNewContext2() {
+        Program pTest = this.createFromFileTest(FILE_NAME_2);
+        Program pRef = this.createFromFileRef(FILE_NAME_2);
+        Map<String, Statement> cRef = pRef.newContext();
+
+        Map<String, Statement> cTest = pTest.newContext();
+
+        assertEquals(pRef, pTest);
+        assertEquals(cRef, cTest);
+    }
+
+    /**
+     * Test new context 3
+     */
+    @Test
+    public final void testNewContext3() {
+        Program pTest = this.createFromFileTest(FILE_NAME_3);
+        Program pRef = this.createFromFileRef(FILE_NAME_3);
+        Map<String, Statement> cRef = pRef.newContext();
+
+        Map<String, Statement> cTest = pTest.newContext();
+
+        assertEquals(pRef, pTest);
+        assertEquals(cRef, cTest);
+    }
+
+    //NEW BODY TEXTS
+
+    /**
+     * New Body test 1
+     */
+    @Test
+    public final void testNewBody1() {
+        Program pTest = this.createFromFileTest(FILE_NAME_1);
+        Program pRef = this.createFromFileRef(FILE_NAME_1);
+        Statement bRef = pRef.newBody();
+
+        Statement bTest = pTest.newBody();
+
+        assertEquals(pRef, pTest);
+        assertEquals(bRef, bTest);
+    }
+
+    /**
+     * New Body test 2
+     */
+    @Test
+    public final void testNewBody2() {
+        Program pTest = this.createFromFileTest(FILE_NAME_2);
+        Program pRef = this.createFromFileRef(FILE_NAME_2);
+        Statement bRef = pRef.newBody();
+
+        Statement bTest = pTest.newBody();
+
+        assertEquals(pRef, pTest);
+        assertEquals(bRef, bTest);
+    }
+
+    /**
+     * New Body test 3
+     */
+    @Test
+    public final void testNewBody3() {
+        Program pTest = this.createFromFileTest(FILE_NAME_3);
+        Program pRef = this.createFromFileRef(FILE_NAME_3);
+        Statement bRef = pRef.newBody();
+
+        Statement bTest = pTest.newBody();
+
+        assertEquals(pRef, pTest);
+        assertEquals(bRef, bTest);
+    }
+
 }
