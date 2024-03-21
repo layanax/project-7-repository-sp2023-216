@@ -4,6 +4,8 @@ METHODS TO COMPLETE:
  
 Program2.java:
 createNewRep
+
+KERNEL METHODS TEST
 setName (LAYAN)
 name (OAK) -------------------------------
 newContext (LAYAN)
@@ -13,6 +15,8 @@ swapBody (OAK)---------------------------------
 
 Statement2.java:
 createNewRep
+
+KERNEL METHODS TO TEST
 kind (LAYAN)
 addToBlock (OAK) --------------------------------------
 removeFromBlock (LAYAN)
