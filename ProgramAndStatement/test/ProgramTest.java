@@ -290,4 +290,231 @@ public abstract class ProgramTest {
 
     // TODO - provide additional test cases to thoroughly test ProgramKernel
 
+    //test cases for name method
+
+    /**
+     * Test name.
+     */
+    @Test
+    public final void testName2() {
+        /*
+         * Setup
+         */
+        Program pTest = this.createFromFileTest(FILE_NAME_2);
+        Program pRef = this.createFromFileRef(FILE_NAME_2);
+
+        /*
+         * The call
+         */
+        String result = pTest.name();
+
+        /*
+         * Evaluation
+         */
+        assertEquals(pRef, pTest);
+        assertEquals("Test1", result);
+    }
+
+    /**
+     * Test name.
+     */
+    @Test
+    public final void testName3() {
+        /*
+         * Setup
+         */
+        Program pTest = this.createFromFileTest(FILE_NAME_3);
+        Program pRef = this.createFromFileRef(FILE_NAME_3);
+
+        /*
+         * The call
+         */
+        String result = pTest.name();
+
+        /*
+         * Evaluation
+         */
+        assertEquals(pRef, pTest);
+        assertEquals("TestNoInstructions", result);
+    }
+
+    //test cases for swapContext method
+
+    /**
+     * Test swapContext.
+     */
+    @Test
+    public final void testSwapContext2() {
+        /*
+         * Setup
+         */
+        Program pTest = this.createFromFileTest(FILE_NAME_2);
+        Program pRef = this.createFromFileRef(FILE_NAME_2);
+        Map<String, Statement> contextRef = pRef.newContext();
+        Map<String, Statement> contextTest = pTest.newContext();
+        String oneName = "one";
+        pRef.swapContext(contextRef);
+        Pair<String, Statement> oneRef = contextRef.remove(oneName);
+        /* contextRef now has just "two" */
+        pRef.swapContext(contextRef);
+        /* pRef's context now has just "two" */
+        contextRef.add(oneRef.key(), oneRef.value());
+        /* contextRef now has just "one" */
+
+        /* Make the reference call, replacing, in pRef, "one" with "two": */
+        pRef.swapContext(contextRef);
+
+        pTest.swapContext(contextTest);
+        Pair<String, Statement> oneTest = contextTest.remove(oneName);
+        /* contextTest now has just "two" */
+        pTest.swapContext(contextTest);
+        /* pTest's context now has just "two" */
+        contextTest.add(oneTest.key(), oneTest.value());
+        /* contextTest now has just "one" */
+
+        /*
+         * The call
+         */
+        pTest.swapContext(contextTest);
+
+        /*
+         * Evaluation
+         */
+        assertEquals(pRef, pTest);
+        assertEquals(contextRef, contextTest);
+    }
+
+    /**
+     * Test swapContext.
+     */
+    @Test
+    public final void testSwapContext3() {
+        /*
+         * Setup
+         */
+        Program pTest = this.createFromFileTest(FILE_NAME_3);
+        Program pRef = this.createFromFileRef(FILE_NAME_3);
+        Map<String, Statement> contextRef = pRef.newContext();
+        Map<String, Statement> contextTest = pTest.newContext();
+        String oneName = "one";
+
+        pRef.swapContext(contextRef);
+        Pair<String, Statement> oneRef = contextRef.remove(oneName);
+        /* contextRef now has just "two" */
+        pRef.swapContext(contextRef);
+        /* pRef's context now has just "two" */
+        contextRef.add(oneRef.key(), oneRef.value());
+        /* contextRef now has just "one" */
+
+        /* Make the reference call, replacing, in pRef, "one" with "two": */
+        pRef.swapContext(contextRef);
+
+        pTest.swapContext(contextTest);
+        Pair<String, Statement> oneTest = contextTest.remove(oneName);
+        /* contextTest now has just "two" */
+        pTest.swapContext(contextTest);
+        /* pTest's context now has just "two" */
+        contextTest.add(oneTest.key(), oneTest.value());
+        /* contextTest now has just "one" */
+
+        /*
+         * The call
+         */
+        pTest.swapContext(contextTest);
+
+        /*
+         * Evaluation
+         */
+        assertEquals(pRef, pTest);
+        assertEquals(contextRef, contextTest);
+    }
+
+    //test cases for swapBody method
+
+    /**
+     * Test swapBody.
+     */
+    @Test
+    public final void testSwapBody2() {
+        /*
+         * Setup
+         */
+        Program pTest = this.createFromFileTest(FILE_NAME_2);
+        Program pRef = this.createFromFileRef(FILE_NAME_2);
+        Statement bodyRef = pRef.newBody();
+        Statement bodyTest = pTest.newBody();
+        pRef.swapBody(bodyRef);
+        Statement firstRef = bodyRef.removeFromBlock(0);
+        /* bodyRef now lacks the first statement */
+        pRef.swapBody(bodyRef);
+        /* pRef's body now lacks the first statement */
+        bodyRef.addToBlock(0, firstRef);
+        /* bodyRef now has just the first statement */
+
+        /* Make the reference call, replacing, in pRef, remaining with first: */
+        pRef.swapBody(bodyRef);
+
+        pTest.swapBody(bodyTest);
+        Statement firstTest = bodyTest.removeFromBlock(0);
+        /* bodyTest now lacks the first statement */
+        pTest.swapBody(bodyTest);
+        /* pTest's body now lacks the first statement */
+        bodyTest.addToBlock(0, firstTest);
+        /* bodyTest now has just the first statement */
+
+        /*
+         * The call
+         */
+        pTest.swapBody(bodyTest);
+
+        /*
+         * Evaluation
+         */
+        assertEquals(pRef, pTest);
+        assertEquals(bodyRef, bodyTest);
+    }
+
+    /**
+     * Test swapBody.
+     */
+    @Test
+    public final void testSwapBody3() {
+        /*
+         * Setup
+         */
+        Program pTest = this.createFromFileTest(FILE_NAME_3);
+        Program pRef = this.createFromFileRef(FILE_NAME_3);
+        Statement bodyRef = pRef.newBody();
+        Statement bodyTest = pTest.newBody();
+        pRef.swapBody(bodyRef);
+        Statement firstRef = bodyRef.removeFromBlock(0);
+        /* bodyRef now lacks the first statement */
+        pRef.swapBody(bodyRef);
+        /* pRef's body now lacks the first statement */
+        bodyRef.addToBlock(0, firstRef);
+        /* bodyRef now has just the first statement */
+
+        /* Make the reference call, replacing, in pRef, remaining with first: */
+        pRef.swapBody(bodyRef);
+
+        pTest.swapBody(bodyTest);
+        Statement firstTest = bodyTest.removeFromBlock(0);
+        /* bodyTest now lacks the first statement */
+        pTest.swapBody(bodyTest);
+        /* pTest's body now lacks the first statement */
+        bodyTest.addToBlock(0, firstTest);
+        /* bodyTest now has just the first statement */
+
+        /*
+         * The call
+         */
+        pTest.swapBody(bodyTest);
+
+        /*
+         * Evaluation
+         */
+        assertEquals(pRef, pTest);
+        assertEquals(bodyRef, bodyTest);
+    }
+
 }
