@@ -105,11 +105,6 @@ public class Statement2 extends StatementSecondary {
             return "(" + this.kind + "," + condition + "," + instruction + ")";
         }
 
-        public Condition condition() {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
     }
 
     /**
@@ -244,12 +239,13 @@ public class Statement2 extends StatementSecondary {
         assert s instanceof Statement2 : "Violation of: s is a Statement2";
         assert s.kind() == Kind.BLOCK : ""
                 + "Violation of: [s is a BLOCK statement]";
+
         Statement2 localS = (Statement2) s;
         StatementLabel label = new StatementLabel(Kind.IF, c);
         Sequence<Tree<StatementLabel>> children = this.rep.newSequenceOfTree();
         children.add(0, localS.rep);
         this.rep.assemble(label, children);
-        localS.createNewRep(); // clears s
+        localS.createNewRep();
     }
 
     @Override
@@ -259,11 +255,12 @@ public class Statement2 extends StatementSecondary {
         assert s instanceof Statement2 : "Violation of: s is a Statement2";
         assert this.kind() == Kind.IF : ""
                 + "Violation of: [this is an IF statement]";
+
         Statement2 localS = (Statement2) s;
         Sequence<Tree<StatementLabel>> children = this.rep.newSequenceOfTree();
         StatementLabel label = this.rep.disassemble(children);
         localS.rep = children.remove(0);
-        this.createNewRep(); // clears this
+        this.createNewRep();
         return label.condition;
     }
 
@@ -310,12 +307,11 @@ public class Statement2 extends StatementSecondary {
         Statement2 localS2 = (Statement2) s2;
         Sequence<Tree<StatementLabel>> seq = this.rep.newSequenceOfTree();
         StatementLabel root = this.rep.disassemble(seq);
-        Condition c = root.condition();
         localS1.rep = seq.remove(0);
         localS2.rep = seq.remove(0);
         this.createNewRep();
 
-        return c;
+        return root.condition;
 
     }
 
@@ -347,11 +343,10 @@ public class Statement2 extends StatementSecondary {
         Statement2 localS = (Statement2) s;
         Sequence<Tree<StatementLabel>> seq = this.rep.newSequenceOfTree();
         StatementLabel root = this.rep.disassemble(seq);
-        Condition c = root.condition();
         localS.rep = seq.remove(0);
         this.createNewRep();
 
-        return c;
+        return root.condition;
 
     }
 
