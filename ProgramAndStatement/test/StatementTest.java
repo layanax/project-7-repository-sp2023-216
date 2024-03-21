@@ -145,6 +145,65 @@ public abstract class StatementTest {
     }
 
     /**
+     * test kind if
+     */
+    @Test
+    public final void testKindIf() {
+
+        final int ifPos = 1;
+        Statement sourceTest = this.createFromFileTest(FILE_NAME_1);
+        Statement sourceRef = this.createFromFileRef(FILE_NAME_1);
+        Statement sTest = sourceTest.removeFromBlock(ifPos);
+        Statement sRef = sourceRef.removeFromBlock(ifPos);
+        Kind kRef = sRef.kind();
+
+        Kind kTest = sTest.kind();
+
+        assertEquals(kRef, kTest);
+        assertEquals(sRef, sTest);
+    }
+
+    /**
+     * test kind of if else
+     */
+    @Test
+    public final void testKindIfElse() {
+
+        final int ifElsePos = 2;
+        Statement sourceTest = this.createFromFileTest(FILE_NAME_1);
+        Statement sourceRef = this.createFromFileRef(FILE_NAME_1);
+        Statement sTest = sourceTest.removeFromBlock(ifElsePos);
+        Statement sRef = sourceRef.removeFromBlock(ifElsePos);
+        Kind kRef = sRef.kind();
+
+        Kind kTest = sTest.kind();
+
+        assertEquals(kRef, kTest);
+        assertEquals(sRef, sTest);
+    }
+
+    /**
+     * test of kind call
+     */
+    @Test
+    public final void testKindCall() {
+        /*
+         * Setup
+         */
+        final int callPos = 0;
+        Statement sourceTest = this.createFromFileTest(FILE_NAME_1);
+        Statement sourceRef = this.createFromFileRef(FILE_NAME_1);
+        Statement sTest = sourceTest.removeFromBlock(callPos);
+        Statement sRef = sourceRef.removeFromBlock(callPos);
+        Kind kRef = sRef.kind();
+
+        Kind kTest = sTest.kind();
+
+        assertEquals(kRef, kTest);
+        assertEquals(sRef, sTest);
+    }
+
+    /**
      * Test addToBlock at an interior position.
      */
     @Test
@@ -460,10 +519,10 @@ public abstract class StatementTest {
     //REMOVE FROM BLOCK TESTS!!!
 
     /**
-     * test removing from front leaving non empty 1
+     * test removing from front leaving non empty 1.
      */
     @Test
-    public final void RemoveFromBlockTest1() {
+    public final void removeFromBlockTest1() {
         Statement sTest = this.createFromFileTest(FILE_NAME_1);
         Statement sRef = this.createFromFileRef(FILE_NAME_1);
         Statement nRef = sRef.removeFromBlock(0);
@@ -476,10 +535,10 @@ public abstract class StatementTest {
     }
 
     /**
-     * test removing from front leaving non empty 2
+     * test removing from front leaving non empty 2.
      */
     @Test
-    public final void RemoveFromBlockTest2() {
+    public final void removeFromBlockTest2() {
         Statement sTest = this.createFromFileTest(FILE_NAME_2);
         Statement sRef = this.createFromFileRef(FILE_NAME_2);
         Statement nRef = sRef.removeFromBlock(0);
@@ -491,10 +550,10 @@ public abstract class StatementTest {
     }
 
     /**
-     * test removing from front leaving non empty 3
+     * test removing from front leaving non empty 3.
      */
     @Test
-    public final void RemoveFromBlockTest3() {
+    public final void removeFromBlockTest3() {
         Statement sTest = this.createFromFileTest(FILE_NAME_3);
         Statement sRef = this.createFromFileRef(FILE_NAME_3);
         Statement nRef = sRef.removeFromBlock(0);
@@ -507,7 +566,7 @@ public abstract class StatementTest {
 
     //ASSEMBLE IF ELSE TESTS!!!
     /**
-     * test assembling if else 1
+     * test assembling if else 1.
      */
     @Test
     public final void testAssembleIfElse1() {
@@ -531,10 +590,10 @@ public abstract class StatementTest {
         assertEquals(sRef, sTest);
     }
 
-    @Test
     /**
-     * test assembling if else 2
+     * test assembling if else 2.
      */
+    @Test
     public final void testAssembleIfElse2() {
         final int ifElsePos = 2;
         Statement blockTest = this.createFromFileTest(FILE_NAME_2);
@@ -555,10 +614,10 @@ public abstract class StatementTest {
         assertEquals(sRef, sTest);
     }
 
-    @Test
     /**
-     * test assembling if else 3
+     * test assembling if else 3.
      */
+    @Test
     public final void testAssembleIfElse3() {
         final int ifElsePos = 4;
         Statement blockTest = this.createFromFileTest(FILE_NAME_3);
@@ -580,10 +639,11 @@ public abstract class StatementTest {
     }
 
     //ASSEMBLE WHILE TESTS!!!
-    @Test
+
     /**
-     * test assembling while 1
+     * test assembling while 1.
      */
+    @Test
     public final void testAssembleWhile1() {
         Statement blockTest = this.createFromFileTest(FILE_NAME_1);
         Statement blockRef = this.createFromFileRef(FILE_NAME_1);
@@ -605,7 +665,7 @@ public abstract class StatementTest {
     }
 
     /**
-     * test assembling while 2
+     * test assembling while 2.
      */
     @Test
     public final void testAssembleWhile2() {
@@ -629,7 +689,7 @@ public abstract class StatementTest {
     }
 
     /**
-     * test assembling while 3
+     * test assembling while 3.
      */
     @Test
     public final void testAssembleWhile3() {
@@ -653,10 +713,11 @@ public abstract class StatementTest {
     }
 
     //ASSEMBLE CALL TESTS!!!
-    @Test
+
     /**
-     * Assemble call test 1
+     * Assemble call test 1.
      */
+    @Test
     public final void testAssembleCall1() {
 
         Statement sRef = this.constructorRef().newInstance();
@@ -671,7 +732,7 @@ public abstract class StatementTest {
     }
 
     /**
-     * Assemble call test 2
+     * Assemble call test 2.
      */
     @Test
     public final void testAssembleCall2() {
@@ -690,7 +751,7 @@ public abstract class StatementTest {
     }
 
     /**
-     * Assemble call test 3
+     * Assemble call test 3.
      */
     @Test
     public final void testAssembleCall3() {
@@ -854,8 +915,8 @@ public abstract class StatementTest {
          * Setup
          */
         final int ifElsePos = 2;
-        Statement blockTest = this.createFromFileTest(FILE_NAME_3);
-        Statement blockRef = this.createFromFileRef(FILE_NAME_3);
+        Statement blockTest = this.createFromFileTest(FILE_NAME_1);
+        Statement blockRef = this.createFromFileRef(FILE_NAME_1);
         Statement sTest = blockTest.removeFromBlock(ifElsePos);
         Statement sRef = blockRef.removeFromBlock(ifElsePos);
         Statement thenBlockTest = sTest.newInstance();
@@ -948,8 +1009,8 @@ public abstract class StatementTest {
         /*
          * Setup
          */
-        Statement blockTest = this.createFromFileTest(FILE_NAME_2);
-        Statement blockRef = this.createFromFileRef(FILE_NAME_2);
+        Statement blockTest = this.createFromFileTest(FILE_NAME_1);
+        Statement blockRef = this.createFromFileRef(FILE_NAME_1);
         Statement sTest = blockTest.removeFromBlock(0);
         Statement sRef = blockRef.removeFromBlock(0);
         String nRef = sRef.disassembleCall();
@@ -991,4 +1052,5 @@ public abstract class StatementTest {
         assertEquals(sRef, sTest);
         assertEquals(nRef, nTest);
     }
+
 }

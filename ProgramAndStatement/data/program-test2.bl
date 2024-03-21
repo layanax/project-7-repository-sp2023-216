@@ -1,11 +1,36 @@
-PROGRAM TestNoInstructions IS
+PROGRAM JUnitTest2 IS
+
+  INSTRUCTION one IS
+     move
+  END one
+  
+  INSTRUCTION two IS
+     turnright
+     turnright
+     turnright
+  END two
+
+  INSTRUCTION three IS
+     turnleft
+     turnleft
+  END three
+
+  INSTRUCTION four IS
+     infect
+     turnright
+     move
+  END four
+
 BEGIN
-  WHILE true DO
-    skip
+  WHILE random DO
+     three
+     three
   END WHILE
-  skip
-  IF random THEN 
-    infect
-    infect
-    END IF
-END TestNoInstructions
+  IF next-is-wall THEN
+     three
+     one
+  END IF
+  IF next-is-enemy THEN
+     four
+  END IF
+END JUnitTest2

@@ -181,7 +181,7 @@ public abstract class ProgramTest {
      * Test swapContext.
      */
     @Test
-    public final void testSwapContext() {
+    public final void testSwapContext1() {
         /*
          * Setup
          */
@@ -190,6 +190,94 @@ public abstract class ProgramTest {
         Map<String, Statement> contextRef = pRef.newContext();
         Map<String, Statement> contextTest = pTest.newContext();
         String oneName = "one";
+        pRef.swapContext(contextRef);
+        Pair<String, Statement> oneRef = contextRef.remove(oneName);
+        /* contextRef now has just "two" */
+        pRef.swapContext(contextRef);
+        /* pRef's context now has just "two" */
+        contextRef.add(oneRef.key(), oneRef.value());
+        /* contextRef now has just "one" */
+
+        /* Make the reference call, replacing, in pRef, "one" with "two": */
+        pRef.swapContext(contextRef);
+
+        pTest.swapContext(contextTest);
+        Pair<String, Statement> oneTest = contextTest.remove(oneName);
+        /* contextTest now has just "two" */
+        pTest.swapContext(contextTest);
+        /* pTest's context now has just "two" */
+        contextTest.add(oneTest.key(), oneTest.value());
+        /* contextTest now has just "one" */
+
+        /*
+         * The call
+         */
+        pTest.swapContext(contextTest);
+
+        /*
+         * Evaluation
+         */
+        assertEquals(pRef, pTest);
+        assertEquals(contextRef, contextTest);
+    }
+
+    /**
+     * test swap context with second file
+     */
+    @Test
+    public final void testSwapContext2() {
+        /*
+         * Setup
+         */
+        Program pTest = this.createFromFileTest(FILE_NAME_2);
+        Program pRef = this.createFromFileRef(FILE_NAME_2);
+        Map<String, Statement> contextRef = pRef.newContext();
+        Map<String, Statement> contextTest = pTest.newContext();
+        String oneName = "only";
+        pRef.swapContext(contextRef);
+        Pair<String, Statement> oneRef = contextRef.remove(oneName);
+        /* contextRef now has just "two" */
+        pRef.swapContext(contextRef);
+        /* pRef's context now has just "two" */
+        contextRef.add(oneRef.key(), oneRef.value());
+        /* contextRef now has just "one" */
+
+        /* Make the reference call, replacing, in pRef, "one" with "two": */
+        pRef.swapContext(contextRef);
+
+        pTest.swapContext(contextTest);
+        Pair<String, Statement> oneTest = contextTest.remove(oneName);
+        /* contextTest now has just "two" */
+        pTest.swapContext(contextTest);
+        /* pTest's context now has just "two" */
+        contextTest.add(oneTest.key(), oneTest.value());
+        /* contextTest now has just "one" */
+
+        /*
+         * The call
+         */
+        pTest.swapContext(contextTest);
+
+        /*
+         * Evaluation
+         */
+        assertEquals(pRef, pTest);
+        assertEquals(contextRef, contextTest);
+    }
+
+    /**
+     * test of swap context when there is no instruction
+     */
+    @Test
+    public final void testSwapContext3() {
+        /*
+         * Setup
+         */
+        Program pTest = this.createFromFileTest(FILE_NAME_2);
+        Program pRef = this.createFromFileRef(FILE_NAME_2);
+        Map<String, Statement> contextRef = pRef.newContext();
+        Map<String, Statement> contextTest = pTest.newContext();
+        String oneName = "only";
         pRef.swapContext(contextRef);
         Pair<String, Statement> oneRef = contextRef.remove(oneName);
         /* contextRef now has just "two" */
@@ -335,98 +423,7 @@ public abstract class ProgramTest {
          * Evaluation
          */
         assertEquals(pRef, pTest);
-        assertEquals("TestNoInstructions", result);
-    }
-
-    //test cases for swapContext method
-
-    /**
-     * Test swapContext.
-     */
-    @Test
-    public final void testSwapContext2() {
-        /*
-         * Setup
-         */
-        Program pTest = this.createFromFileTest(FILE_NAME_2);
-        Program pRef = this.createFromFileRef(FILE_NAME_2);
-        Map<String, Statement> contextRef = pRef.newContext();
-        Map<String, Statement> contextTest = pTest.newContext();
-        String oneName = "one";
-        pRef.swapContext(contextRef);
-        Pair<String, Statement> oneRef = contextRef.remove(oneName);
-        /* contextRef now has just "two" */
-        pRef.swapContext(contextRef);
-        /* pRef's context now has just "two" */
-        contextRef.add(oneRef.key(), oneRef.value());
-        /* contextRef now has just "one" */
-
-        /* Make the reference call, replacing, in pRef, "one" with "two": */
-        pRef.swapContext(contextRef);
-
-        pTest.swapContext(contextTest);
-        Pair<String, Statement> oneTest = contextTest.remove(oneName);
-        /* contextTest now has just "two" */
-        pTest.swapContext(contextTest);
-        /* pTest's context now has just "two" */
-        contextTest.add(oneTest.key(), oneTest.value());
-        /* contextTest now has just "one" */
-
-        /*
-         * The call
-         */
-        pTest.swapContext(contextTest);
-
-        /*
-         * Evaluation
-         */
-        assertEquals(pRef, pTest);
-        assertEquals(contextRef, contextTest);
-    }
-
-    /**
-     * Test swapContext.
-     */
-    @Test
-    public final void testSwapContext3() {
-        /*
-         * Setup
-         */
-        Program pTest = this.createFromFileTest(FILE_NAME_3);
-        Program pRef = this.createFromFileRef(FILE_NAME_3);
-        Map<String, Statement> contextRef = pRef.newContext();
-        Map<String, Statement> contextTest = pTest.newContext();
-        String oneName = "one";
-
-        pRef.swapContext(contextRef);
-        Pair<String, Statement> oneRef = contextRef.remove(oneName);
-        /* contextRef now has just "two" */
-        pRef.swapContext(contextRef);
-        /* pRef's context now has just "two" */
-        contextRef.add(oneRef.key(), oneRef.value());
-        /* contextRef now has just "one" */
-
-        /* Make the reference call, replacing, in pRef, "one" with "two": */
-        pRef.swapContext(contextRef);
-
-        pTest.swapContext(contextTest);
-        Pair<String, Statement> oneTest = contextTest.remove(oneName);
-        /* contextTest now has just "two" */
-        pTest.swapContext(contextTest);
-        /* pTest's context now has just "two" */
-        contextTest.add(oneTest.key(), oneTest.value());
-        /* contextTest now has just "one" */
-
-        /*
-         * The call
-         */
-        pTest.swapContext(contextTest);
-
-        /*
-         * Evaluation
-         */
-        assertEquals(pRef, pTest);
-        assertEquals(contextRef, contextTest);
+        assertEquals("JUnitTest2", result);
     }
 
     //test cases for swapBody method
@@ -525,7 +522,7 @@ public abstract class ProgramTest {
     public final void testSetName1() {
         Program pTest = this.createFromFileTest(FILE_NAME_1);
         Program pRef = this.createFromFileRef(FILE_NAME_1);
-        String newName = "NEW NAME";
+        String newName = "Replacement";
 
         pRef.setName(newName);
         pTest.setName(newName);
@@ -541,7 +538,7 @@ public abstract class ProgramTest {
     public final void testSetName2() {
         Program pTest = this.createFromFileTest(FILE_NAME_2);
         Program pRef = this.createFromFileRef(FILE_NAME_2);
-        String newName = "NEW NAME";
+        String newName = "Replacement";
 
         pRef.setName(newName);
         pTest.setName(newName);
@@ -557,7 +554,7 @@ public abstract class ProgramTest {
     public final void testSetName3() {
         Program pTest = this.createFromFileTest(FILE_NAME_3);
         Program pRef = this.createFromFileRef(FILE_NAME_3);
-        String newName = "NEW NAME";
+        String newName = "Replacement";
 
         pRef.setName(newName);
         pTest.setName(newName);
