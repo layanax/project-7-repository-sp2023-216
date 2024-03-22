@@ -191,11 +191,15 @@ public class Statement2 extends StatementSecondary {
                 + "Violation of: pos <= [length of this BLOCK]";
         assert s.kind() != Kind.BLOCK : "Violation of: [s is not a BLOCK statement]";
 
+        //create new sequence
         Sequence<Tree<StatementLabel>> seq = this.rep.newSequenceOfTree();
+        //disassemble current rep into seq
         StatementLabel root = this.rep.disassemble(seq);
+        //add s rep at pos
         Statement2 temp = (Statement2) s;
         seq.add(pos, temp.rep);
         temp.createNewRep();
+        //assemble sequence back into rep
         this.rep.assemble(root, seq);
 
     }
@@ -213,11 +217,15 @@ public class Statement2 extends StatementSecondary {
          * is safe because the convention clearly holds at this point in the
          * code.
          */
-        Statement2 s = this.newInstance();
 
+        Statement2 s = this.newInstance();
+        //create new sequence
         Sequence<Tree<StatementLabel>> children = this.rep.newSequenceOfTree();
+        //disassemble current rep into children
         StatementLabel root = this.rep.disassemble(children);
+        //remove statement rep at pos
         s.rep = children.remove(pos);
+        //assemble sequence back into rep
         this.rep.assemble(root, children);
 
         return s;
@@ -282,9 +290,12 @@ public class Statement2 extends StatementSecondary {
         Statement2 localS1 = (Statement2) s1;
         Statement2 localS2 = (Statement2) s2;
         StatementLabel label = new StatementLabel(Kind.IF_ELSE, c);
+        //create new sequence to hold children of if-else
         Sequence<Tree<StatementLabel>> children = this.rep.newSequenceOfTree();
+        //add to children sequence
         children.add(0, localS1.rep);
         children.add(1, localS2.rep);
+        //assemble with new label and added children
         this.rep.assemble(label, children);
         localS1.createNewRep();
         localS2.createNewRep();
@@ -305,8 +316,11 @@ public class Statement2 extends StatementSecondary {
 
         Statement2 localS1 = (Statement2) s1;
         Statement2 localS2 = (Statement2) s2;
+        //create new sequence to hold children of if-else
         Sequence<Tree<StatementLabel>> seq = this.rep.newSequenceOfTree();
+        //disassemble current rep for if-else
         StatementLabel root = this.rep.disassemble(seq);
+        //remove from sequence
         localS1.rep = seq.remove(0);
         localS2.rep = seq.remove(0);
         this.createNewRep();
@@ -325,8 +339,10 @@ public class Statement2 extends StatementSecondary {
 
         Statement2 localS = (Statement2) s;
         StatementLabel label = new StatementLabel(Kind.WHILE, c);
+        //create new sequence to hold children of while
         Sequence<Tree<StatementLabel>> children = this.rep.newSequenceOfTree();
         children.add(0, localS.rep);
+        //assemble while with new label and children
         this.rep.assemble(label, children);
         localS.createNewRep();
 
@@ -341,7 +357,9 @@ public class Statement2 extends StatementSecondary {
                 + "Violation of: [this is a WHILE statement]";
 
         Statement2 localS = (Statement2) s;
+        //create new sequence to hold children of while
         Sequence<Tree<StatementLabel>> seq = this.rep.newSequenceOfTree();
+        //disassemble current rep into sequence
         StatementLabel root = this.rep.disassemble(seq);
         localS.rep = seq.remove(0);
         this.createNewRep();
@@ -357,7 +375,9 @@ public class Statement2 extends StatementSecondary {
                 + "Violation of: inst is a valid IDENTIFIER";
 
         StatementLabel label = new StatementLabel(Kind.CALL, inst);
+        //create new sequence to hold children of call
         Sequence<Tree<StatementLabel>> children = this.rep.newSequenceOfTree();
+        //assemble call rep with new label and children
         this.rep.assemble(label, children);
 
     }
@@ -367,8 +387,11 @@ public class Statement2 extends StatementSecondary {
         assert this.kind() == Kind.CALL : ""
                 + "Violation of: [this is a CALL statement]";
 
+        //create new sequence to hold children of call
         Sequence<Tree<StatementLabel>> seq = this.rep.newSequenceOfTree();
+        //disassemble current rep into sequence
         StatementLabel root = this.rep.disassemble(seq);
+        //retrieve instruction from root label
         String instruction = root.instruction;
         this.createNewRep();
 

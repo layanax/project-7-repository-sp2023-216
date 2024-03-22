@@ -106,12 +106,11 @@ public class Program2 extends ProgramSecondary {
      */
     private void createNewRep() {
 
+        // Make sure to use Statement1 from the library
+        // Use Map1L for the context if you want the asserts below to match
         this.body = new Statement1();
         this.context = new Map1L<String, Statement>();
         this.name = "Unnamed";
-
-        // Make sure to use Statement1 from the library
-        // Use Map1L for the context if you want the asserts below to match
 
     }
 

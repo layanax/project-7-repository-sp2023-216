@@ -145,65 +145,6 @@ public abstract class StatementTest {
     }
 
     /**
-     * test kind if
-     */
-    @Test
-    public final void testKindIf() {
-
-        final int ifPos = 1;
-        Statement sourceTest = this.createFromFileTest(FILE_NAME_1);
-        Statement sourceRef = this.createFromFileRef(FILE_NAME_1);
-        Statement sTest = sourceTest.removeFromBlock(ifPos);
-        Statement sRef = sourceRef.removeFromBlock(ifPos);
-        Kind kRef = sRef.kind();
-
-        Kind kTest = sTest.kind();
-
-        assertEquals(kRef, kTest);
-        assertEquals(sRef, sTest);
-    }
-
-    /**
-     * test kind of if else
-     */
-    @Test
-    public final void testKindIfElse() {
-
-        final int ifElsePos = 2;
-        Statement sourceTest = this.createFromFileTest(FILE_NAME_1);
-        Statement sourceRef = this.createFromFileRef(FILE_NAME_1);
-        Statement sTest = sourceTest.removeFromBlock(ifElsePos);
-        Statement sRef = sourceRef.removeFromBlock(ifElsePos);
-        Kind kRef = sRef.kind();
-
-        Kind kTest = sTest.kind();
-
-        assertEquals(kRef, kTest);
-        assertEquals(sRef, sTest);
-    }
-
-    /**
-     * test of kind call
-     */
-    @Test
-    public final void testKindCall() {
-        /*
-         * Setup
-         */
-        final int callPos = 0;
-        Statement sourceTest = this.createFromFileTest(FILE_NAME_1);
-        Statement sourceRef = this.createFromFileRef(FILE_NAME_1);
-        Statement sTest = sourceTest.removeFromBlock(callPos);
-        Statement sRef = sourceRef.removeFromBlock(callPos);
-        Kind kRef = sRef.kind();
-
-        Kind kTest = sTest.kind();
-
-        assertEquals(kRef, kTest);
-        assertEquals(sRef, sTest);
-    }
-
-    /**
      * Test addToBlock at an interior position.
      */
     @Test
@@ -516,7 +457,7 @@ public abstract class StatementTest {
         assertEquals(nRef, nTest);
     }
 
-    //REMOVE FROM BLOCK TESTS!!!
+    //test cases for removeFromBlock method
 
     /**
      * test removing from front leaving non empty 1.
@@ -564,7 +505,7 @@ public abstract class StatementTest {
         assertEquals(nRef, nTest);
     }
 
-    //ASSEMBLE IF ELSE TESTS!!!
+    //test cases for assembleIfElse method
     /**
      * test assembling if else 1.
      */
@@ -638,7 +579,7 @@ public abstract class StatementTest {
         assertEquals(sRef, sTest);
     }
 
-    //ASSEMBLE WHILE TESTS!!!
+    //test cases for assembleWhile method
 
     /**
      * test assembling while 1.
@@ -712,7 +653,7 @@ public abstract class StatementTest {
         assertEquals(sRef, sTest);
     }
 
-    //ASSEMBLE CALL TESTS!!!
+    //test cases for assembleCall method
 
     /**
      * Assemble call test 1.
@@ -767,40 +708,71 @@ public abstract class StatementTest {
     }
 
     //test cases for kind method
-
-    //test cases for addToBlock method
     /**
-     * Test addToBlock at an interior position.
+     * Test kind of if with sample statement BL file.
      */
     @Test
-    public final void testAddToBlockInterior2() {
-        /*
-         * Setup
-         */
-        Statement sTest = this.createFromFileTest(FILE_NAME_1);
-        Statement sRef = this.createFromFileRef(FILE_NAME_1);
-        Statement emptyBlock = sRef.newInstance();
-        Statement nestedTest = sTest.removeFromBlock(1);
-        Statement nestedRef = sRef.removeFromBlock(1);
-        sRef.addToBlock(2, nestedRef);
+    public final void testKindIf() {
 
-        /*
-         * The call
-         */
-        sTest.addToBlock(2, nestedTest);
+        final int ifPos = 1;
+        Statement sourceTest = this.createFromFileTest(FILE_NAME_1);
+        Statement sourceRef = this.createFromFileRef(FILE_NAME_1);
+        Statement sTest = sourceTest.removeFromBlock(ifPos);
+        Statement sRef = sourceRef.removeFromBlock(ifPos);
+        Kind kRef = sRef.kind();
 
-        /*
-         * Evaluation
-         */
-        assertEquals(emptyBlock, nestedTest);
+        Kind kTest = sTest.kind();
+
+        assertEquals(kRef, kTest);
         assertEquals(sRef, sTest);
     }
 
     /**
-     * Test addToBlock at an interior position.
+     * Test kind of if else with sample statement BL file.
      */
     @Test
-    public final void testAddToBlock2() {
+    public final void testKindIfElse() {
+
+        final int ifElsePos = 2;
+        Statement sourceTest = this.createFromFileTest(FILE_NAME_1);
+        Statement sourceRef = this.createFromFileRef(FILE_NAME_1);
+        Statement sTest = sourceTest.removeFromBlock(ifElsePos);
+        Statement sRef = sourceRef.removeFromBlock(ifElsePos);
+        Kind kRef = sRef.kind();
+
+        Kind kTest = sTest.kind();
+
+        assertEquals(kRef, kTest);
+        assertEquals(sRef, sTest);
+    }
+
+    /**
+     * Test of kind call with sample statement BL file.
+     */
+    @Test
+    public final void testKindCall() {
+        /*
+         * Setup
+         */
+        final int callPos = 0;
+        Statement sourceTest = this.createFromFileTest(FILE_NAME_1);
+        Statement sourceRef = this.createFromFileRef(FILE_NAME_1);
+        Statement sTest = sourceTest.removeFromBlock(callPos);
+        Statement sRef = sourceRef.removeFromBlock(callPos);
+        Kind kRef = sRef.kind();
+
+        Kind kTest = sTest.kind();
+
+        assertEquals(kRef, kTest);
+        assertEquals(sRef, sTest);
+    }
+
+    //test cases for addToBlock method
+    /**
+     * Test addToBlock at an interior position with statement test file #2.
+     */
+    @Test
+    public final void testAddToBlockInterior2() {
         /*
          * Setup
          */
@@ -823,12 +795,39 @@ public abstract class StatementTest {
         assertEquals(sRef, sTest);
     }
 
-    //test cases for lengthOfBlock method
     /**
-     * Test lengthOfBlock, greater than zero.
+     * Test addToBlock at an interior position with statement test file #3.
      */
     @Test
-    public final void testLengthOfBlock1() {
+    public final void testAddToBlockInterior3() {
+        /*
+         * Setup
+         */
+        Statement sTest = this.createFromFileTest(FILE_NAME_3);
+        Statement sRef = this.createFromFileRef(FILE_NAME_3);
+        Statement emptyBlock = sRef.newInstance();
+        Statement nestedTest = sTest.removeFromBlock(1);
+        Statement nestedRef = sRef.removeFromBlock(1);
+        sRef.addToBlock(2, nestedRef);
+
+        /*
+         * The call
+         */
+        sTest.addToBlock(2, nestedTest);
+
+        /*
+         * Evaluation
+         */
+        assertEquals(emptyBlock, nestedTest);
+        assertEquals(sRef, sTest);
+    }
+
+    //test cases for lengthOfBlock method
+    /**
+     * Test lengthOfBlock, greater than zero with statement test file #2.
+     */
+    @Test
+    public final void testLengthOfBlock2() {
         /*
          * Setup
          */
@@ -849,10 +848,10 @@ public abstract class StatementTest {
     }
 
     /**
-     * Test lengthOfBlock, greater than zero.
+     * Test lengthOfBlock, greater than zero with statement test file #3.
      */
     @Test
-    public final void testLengthOfBlock2() {
+    public final void testLengthOfBlock3() {
         /*
          * Setup
          */
@@ -874,10 +873,10 @@ public abstract class StatementTest {
 
     //test cases for disassembleIfElse method
     /**
-     * Test disassembleIfElse.
+     * Test disassembleIfElse with statement test file #2.
      */
     @Test
-    public final void testDisassembleIfElse1() {
+    public final void testDisassembleIfElse2() {
         /*
          * Setup
          */
@@ -907,10 +906,10 @@ public abstract class StatementTest {
     }
 
     /**
-     * Test disassembleIfElse.
+     * Test disassembleIfElse with statement test file #1.
      */
     @Test
-    public final void testDisassembleIfElse2() {
+    public final void testDisassembleIfElse3() {
         /*
          * Setup
          */
@@ -941,10 +940,10 @@ public abstract class StatementTest {
 
     //test cases for disassembleWhile method
     /**
-     * Test disassembleWhile.
+     * Test disassembleWhile with statement test file #2.
      */
     @Test
-    public final void testDisassembleWhile1() {
+    public final void testDisassembleWhile2() {
         /*
          * Setup
          */
@@ -971,10 +970,10 @@ public abstract class StatementTest {
     }
 
     /**
-     * Test disassembleWhile.
+     * Test disassembleWhile with statement test file #3.
      */
     @Test
-    public final void testDisassembleWhile2() {
+    public final void testDisassembleWhile3() {
         /*
          * Setup
          */
@@ -1002,10 +1001,10 @@ public abstract class StatementTest {
 
     //test cases for disassembleCall method
     /**
-     * Test disassembleCall.
+     * Test disassembleCall with statement test file #1.
      */
     @Test
-    public final void testDisassembleCall1() {
+    public final void testDisassembleCall2() {
         /*
          * Setup
          */
@@ -1028,10 +1027,10 @@ public abstract class StatementTest {
     }
 
     /**
-     * Test disassembleCall.
+     * Test disassembleCall with statement test file #3.
      */
     @Test
-    public final void testDisassembleCall2() {
+    public final void testDisassembleCall3() {
         /*
          * Setup
          */

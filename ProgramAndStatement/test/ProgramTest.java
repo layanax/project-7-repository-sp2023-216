@@ -106,6 +106,8 @@ public abstract class ProgramTest {
         assertEquals(pRef, pTest);
     }
 
+    //test cases for name method
+
     /**
      * Test name.
      */
@@ -128,257 +130,6 @@ public abstract class ProgramTest {
         assertEquals(pRef, pTest);
         assertEquals("Test", result);
     }
-
-    /**
-     * Test setName.
-     */
-    @Test
-    public final void testSetName() {
-        /*
-         * Setup
-         */
-        Program pTest = this.createFromFileTest(FILE_NAME_1);
-        Program pRef = this.createFromFileRef(FILE_NAME_1);
-        String newName = "Replacement";
-        pRef.setName(newName);
-
-        /*
-         * The call
-         */
-        pTest.setName(newName);
-
-        /*
-         * Evaluation
-         */
-        assertEquals(pRef, pTest);
-    }
-
-    /**
-     * Test newContext.
-     */
-    @Test
-    public final void testNewContext() {
-        /*
-         * Setup
-         */
-        Program pTest = this.createFromFileTest(FILE_NAME_1);
-        Program pRef = this.createFromFileRef(FILE_NAME_1);
-        Map<String, Statement> cRef = pRef.newContext();
-
-        /*
-         * The call
-         */
-        Map<String, Statement> cTest = pTest.newContext();
-
-        /*
-         * Evaluation
-         */
-        assertEquals(pRef, pTest);
-        assertEquals(cRef, cTest);
-    }
-
-    /**
-     * Test swapContext.
-     */
-    @Test
-    public final void testSwapContext1() {
-        /*
-         * Setup
-         */
-        Program pTest = this.createFromFileTest(FILE_NAME_1);
-        Program pRef = this.createFromFileRef(FILE_NAME_1);
-        Map<String, Statement> contextRef = pRef.newContext();
-        Map<String, Statement> contextTest = pTest.newContext();
-        String oneName = "one";
-        pRef.swapContext(contextRef);
-        Pair<String, Statement> oneRef = contextRef.remove(oneName);
-        /* contextRef now has just "two" */
-        pRef.swapContext(contextRef);
-        /* pRef's context now has just "two" */
-        contextRef.add(oneRef.key(), oneRef.value());
-        /* contextRef now has just "one" */
-
-        /* Make the reference call, replacing, in pRef, "one" with "two": */
-        pRef.swapContext(contextRef);
-
-        pTest.swapContext(contextTest);
-        Pair<String, Statement> oneTest = contextTest.remove(oneName);
-        /* contextTest now has just "two" */
-        pTest.swapContext(contextTest);
-        /* pTest's context now has just "two" */
-        contextTest.add(oneTest.key(), oneTest.value());
-        /* contextTest now has just "one" */
-
-        /*
-         * The call
-         */
-        pTest.swapContext(contextTest);
-
-        /*
-         * Evaluation
-         */
-        assertEquals(pRef, pTest);
-        assertEquals(contextRef, contextTest);
-    }
-
-    /**
-     * test swap context with second file
-     */
-    @Test
-    public final void testSwapContext2() {
-        /*
-         * Setup
-         */
-        Program pTest = this.createFromFileTest(FILE_NAME_2);
-        Program pRef = this.createFromFileRef(FILE_NAME_2);
-        Map<String, Statement> contextRef = pRef.newContext();
-        Map<String, Statement> contextTest = pTest.newContext();
-        String oneName = "only";
-        pRef.swapContext(contextRef);
-        Pair<String, Statement> oneRef = contextRef.remove(oneName);
-        /* contextRef now has just "two" */
-        pRef.swapContext(contextRef);
-        /* pRef's context now has just "two" */
-        contextRef.add(oneRef.key(), oneRef.value());
-        /* contextRef now has just "one" */
-
-        /* Make the reference call, replacing, in pRef, "one" with "two": */
-        pRef.swapContext(contextRef);
-
-        pTest.swapContext(contextTest);
-        Pair<String, Statement> oneTest = contextTest.remove(oneName);
-        /* contextTest now has just "two" */
-        pTest.swapContext(contextTest);
-        /* pTest's context now has just "two" */
-        contextTest.add(oneTest.key(), oneTest.value());
-        /* contextTest now has just "one" */
-
-        /*
-         * The call
-         */
-        pTest.swapContext(contextTest);
-
-        /*
-         * Evaluation
-         */
-        assertEquals(pRef, pTest);
-        assertEquals(contextRef, contextTest);
-    }
-
-    /**
-     * test of swap context when there is no instruction
-     */
-    @Test
-    public final void testSwapContext3() {
-        /*
-         * Setup
-         */
-        Program pTest = this.createFromFileTest(FILE_NAME_2);
-        Program pRef = this.createFromFileRef(FILE_NAME_2);
-        Map<String, Statement> contextRef = pRef.newContext();
-        Map<String, Statement> contextTest = pTest.newContext();
-        String oneName = "only";
-        pRef.swapContext(contextRef);
-        Pair<String, Statement> oneRef = contextRef.remove(oneName);
-        /* contextRef now has just "two" */
-        pRef.swapContext(contextRef);
-        /* pRef's context now has just "two" */
-        contextRef.add(oneRef.key(), oneRef.value());
-        /* contextRef now has just "one" */
-
-        /* Make the reference call, replacing, in pRef, "one" with "two": */
-        pRef.swapContext(contextRef);
-
-        pTest.swapContext(contextTest);
-        Pair<String, Statement> oneTest = contextTest.remove(oneName);
-        /* contextTest now has just "two" */
-        pTest.swapContext(contextTest);
-        /* pTest's context now has just "two" */
-        contextTest.add(oneTest.key(), oneTest.value());
-        /* contextTest now has just "one" */
-
-        /*
-         * The call
-         */
-        pTest.swapContext(contextTest);
-
-        /*
-         * Evaluation
-         */
-        assertEquals(pRef, pTest);
-        assertEquals(contextRef, contextTest);
-    }
-
-    /**
-     * Test newBody.
-     */
-    @Test
-    public final void testNewBody() {
-        /*
-         * Setup
-         */
-        Program pTest = this.createFromFileTest(FILE_NAME_1);
-        Program pRef = this.createFromFileRef(FILE_NAME_1);
-        Statement bRef = pRef.newBody();
-
-        /*
-         * The call
-         */
-        Statement bTest = pTest.newBody();
-
-        /*
-         * Evaluation
-         */
-        assertEquals(pRef, pTest);
-        assertEquals(bRef, bTest);
-    }
-
-    /**
-     * Test swapBody.
-     */
-    @Test
-    public final void testSwapBody() {
-        /*
-         * Setup
-         */
-        Program pTest = this.createFromFileTest(FILE_NAME_1);
-        Program pRef = this.createFromFileRef(FILE_NAME_1);
-        Statement bodyRef = pRef.newBody();
-        Statement bodyTest = pTest.newBody();
-        pRef.swapBody(bodyRef);
-        Statement firstRef = bodyRef.removeFromBlock(0);
-        /* bodyRef now lacks the first statement */
-        pRef.swapBody(bodyRef);
-        /* pRef's body now lacks the first statement */
-        bodyRef.addToBlock(0, firstRef);
-        /* bodyRef now has just the first statement */
-
-        /* Make the reference call, replacing, in pRef, remaining with first: */
-        pRef.swapBody(bodyRef);
-
-        pTest.swapBody(bodyTest);
-        Statement firstTest = bodyTest.removeFromBlock(0);
-        /* bodyTest now lacks the first statement */
-        pTest.swapBody(bodyTest);
-        /* pTest's body now lacks the first statement */
-        bodyTest.addToBlock(0, firstTest);
-        /* bodyTest now has just the first statement */
-
-        /*
-         * The call
-         */
-        pTest.swapBody(bodyTest);
-
-        /*
-         * Evaluation
-         */
-        assertEquals(pRef, pTest);
-        assertEquals(bodyRef, bodyTest);
-    }
-
-    // TODO - provide additional test cases to thoroughly test ProgramKernel
-
-    //test cases for name method
 
     /**
      * Test name.
@@ -426,10 +177,403 @@ public abstract class ProgramTest {
         assertEquals("JUnitTest2", result);
     }
 
+    //test cases for setName method
+
+    /**
+     * Test setName.
+     */
+    @Test
+    public final void testSetName() {
+        /*
+         * Setup
+         */
+        Program pTest = this.createFromFileTest(FILE_NAME_1);
+        Program pRef = this.createFromFileRef(FILE_NAME_1);
+        String newName = "Replacement";
+        pRef.setName(newName);
+
+        /*
+         * The call
+         */
+        pTest.setName(newName);
+
+        /*
+         * Evaluation
+         */
+        assertEquals(pRef, pTest);
+    }
+
+    /**
+     * Tests setName with program test file #1.
+     */
+    @Test
+    public final void testSetName1() {
+        Program pTest = this.createFromFileTest(FILE_NAME_1);
+        Program pRef = this.createFromFileRef(FILE_NAME_1);
+        String newName = "Replacement";
+
+        pRef.setName(newName);
+        pTest.setName(newName);
+
+        assertEquals(pRef, pTest);
+        assertEquals(pRef.name(), pTest.name());
+    }
+
+    /**
+     * Tests setName with program test file #2.
+     */
+    @Test
+    public final void testSetName2() {
+        Program pTest = this.createFromFileTest(FILE_NAME_2);
+        Program pRef = this.createFromFileRef(FILE_NAME_2);
+        String newName = "Replacement";
+
+        pRef.setName(newName);
+        pTest.setName(newName);
+
+        assertEquals(pRef, pTest);
+        assertEquals(pRef.name(), pTest.name());
+    }
+
+    /**
+     * Tests setName with program test file #3.
+     */
+    @Test
+    public final void testSetName3() {
+        Program pTest = this.createFromFileTest(FILE_NAME_3);
+        Program pRef = this.createFromFileRef(FILE_NAME_3);
+        String newName = "Replacement";
+
+        pRef.setName(newName);
+        pTest.setName(newName);
+
+        assertEquals(pRef, pTest);
+        assertEquals(pRef.name(), pTest.name());
+    }
+
+    //test cases for newContext method
+
+    /**
+     * Test newContext.
+     */
+    @Test
+    public final void testNewContext() {
+        /*
+         * Setup
+         */
+        Program pTest = this.createFromFileTest(FILE_NAME_1);
+        Program pRef = this.createFromFileRef(FILE_NAME_1);
+        Map<String, Statement> cRef = pRef.newContext();
+
+        /*
+         * The call
+         */
+        Map<String, Statement> cTest = pTest.newContext();
+
+        /*
+         * Evaluation
+         */
+        assertEquals(pRef, pTest);
+        assertEquals(cRef, cTest);
+    }
+
+    /**
+     * Tests newContext with program test file #1.
+     */
+    @Test
+    public final void testNewContext1() {
+        Program pTest = this.createFromFileTest(FILE_NAME_1);
+        Program pRef = this.createFromFileRef(FILE_NAME_1);
+        Map<String, Statement> cRef = pRef.newContext();
+
+        Map<String, Statement> cTest = pTest.newContext();
+
+        assertEquals(pRef, pTest);
+        assertEquals(cRef, cTest);
+    }
+
+    /**
+     * Tests newContext with program test file #2.
+     */
+    @Test
+    public final void testNewContext2() {
+        Program pTest = this.createFromFileTest(FILE_NAME_2);
+        Program pRef = this.createFromFileRef(FILE_NAME_2);
+        Map<String, Statement> cRef = pRef.newContext();
+
+        Map<String, Statement> cTest = pTest.newContext();
+
+        assertEquals(pRef, pTest);
+        assertEquals(cRef, cTest);
+    }
+
+    /**
+     * Tests newContext with program test file #3.
+     */
+    @Test
+    public final void testNewContext3() {
+        Program pTest = this.createFromFileTest(FILE_NAME_3);
+        Program pRef = this.createFromFileRef(FILE_NAME_3);
+        Map<String, Statement> cRef = pRef.newContext();
+
+        Map<String, Statement> cTest = pTest.newContext();
+
+        assertEquals(pRef, pTest);
+        assertEquals(cRef, cTest);
+    }
+
+    //test cases for swapContext method
+
+    /**
+     * Test swapContext.
+     */
+    @Test
+    public final void testSwapContext() {
+        /*
+         * Setup
+         */
+        Program pTest = this.createFromFileTest(FILE_NAME_1);
+        Program pRef = this.createFromFileRef(FILE_NAME_1);
+        Map<String, Statement> contextRef = pRef.newContext();
+        Map<String, Statement> contextTest = pTest.newContext();
+        String oneName = "one";
+        pRef.swapContext(contextRef);
+        Pair<String, Statement> oneRef = contextRef.remove(oneName);
+        /* contextRef now has just "two" */
+        pRef.swapContext(contextRef);
+        /* pRef's context now has just "two" */
+        contextRef.add(oneRef.key(), oneRef.value());
+        /* contextRef now has just "one" */
+
+        /* Make the reference call, replacing, in pRef, "one" with "two": */
+        pRef.swapContext(contextRef);
+
+        pTest.swapContext(contextTest);
+        Pair<String, Statement> oneTest = contextTest.remove(oneName);
+        /* contextTest now has just "two" */
+        pTest.swapContext(contextTest);
+        /* pTest's context now has just "two" */
+        contextTest.add(oneTest.key(), oneTest.value());
+        /* contextTest now has just "one" */
+
+        /*
+         * The call
+         */
+        pTest.swapContext(contextTest);
+
+        /*
+         * Evaluation
+         */
+        assertEquals(pRef, pTest);
+        assertEquals(contextRef, contextTest);
+    }
+
+    /**
+     * Tests swapContext with program test file #2.
+     */
+    @Test
+    public final void testSwapContext2() {
+        /*
+         * Setup
+         */
+        Program pTest = this.createFromFileTest(FILE_NAME_2);
+        Program pRef = this.createFromFileRef(FILE_NAME_2);
+        Map<String, Statement> contextRef = pRef.newContext();
+        Map<String, Statement> contextTest = pTest.newContext();
+        String oneName = "only";
+        pRef.swapContext(contextRef);
+        Pair<String, Statement> oneRef = contextRef.remove(oneName);
+        /* contextRef now has just "two" */
+        pRef.swapContext(contextRef);
+        /* pRef's context now has just "two" */
+        contextRef.add(oneRef.key(), oneRef.value());
+        /* contextRef now has just "one" */
+
+        /* Make the reference call, replacing, in pRef, "one" with "two": */
+        pRef.swapContext(contextRef);
+
+        pTest.swapContext(contextTest);
+        Pair<String, Statement> oneTest = contextTest.remove(oneName);
+        /* contextTest now has just "two" */
+        pTest.swapContext(contextTest);
+        /* pTest's context now has just "two" */
+        contextTest.add(oneTest.key(), oneTest.value());
+        /* contextTest now has just "one" */
+
+        /*
+         * The call
+         */
+        pTest.swapContext(contextTest);
+
+        /*
+         * Evaluation
+         */
+        assertEquals(pRef, pTest);
+        assertEquals(contextRef, contextTest);
+    }
+
+    /**
+     * Tests swapContext when there is no instruction with program test file #2.
+     */
+    @Test
+    public final void testSwapContext3() {
+        /*
+         * Setup
+         */
+        Program pTest = this.createFromFileTest(FILE_NAME_2);
+        Program pRef = this.createFromFileRef(FILE_NAME_2);
+        Map<String, Statement> contextRef = pRef.newContext();
+        Map<String, Statement> contextTest = pTest.newContext();
+        String oneName = "only";
+        pRef.swapContext(contextRef);
+        Pair<String, Statement> oneRef = contextRef.remove(oneName);
+        /* contextRef now has just "two" */
+        pRef.swapContext(contextRef);
+        /* pRef's context now has just "two" */
+        contextRef.add(oneRef.key(), oneRef.value());
+        /* contextRef now has just "one" */
+
+        /* Make the reference call, replacing, in pRef, "one" with "two": */
+        pRef.swapContext(contextRef);
+
+        pTest.swapContext(contextTest);
+        Pair<String, Statement> oneTest = contextTest.remove(oneName);
+        /* contextTest now has just "two" */
+        pTest.swapContext(contextTest);
+        /* pTest's context now has just "two" */
+        contextTest.add(oneTest.key(), oneTest.value());
+        /* contextTest now has just "one" */
+
+        /*
+         * The call
+         */
+        pTest.swapContext(contextTest);
+
+        /*
+         * Evaluation
+         */
+        assertEquals(pRef, pTest);
+        assertEquals(contextRef, contextTest);
+    }
+
+    //test cases for newBody method
+
+    /**
+     * Test newBody.
+     */
+    @Test
+    public final void testNewBody() {
+        /*
+         * Setup
+         */
+        Program pTest = this.createFromFileTest(FILE_NAME_1);
+        Program pRef = this.createFromFileRef(FILE_NAME_1);
+        Statement bRef = pRef.newBody();
+
+        /*
+         * The call
+         */
+        Statement bTest = pTest.newBody();
+
+        /*
+         * Evaluation
+         */
+        assertEquals(pRef, pTest);
+        assertEquals(bRef, bTest);
+    }
+
+    /**
+     * Tests newBody with program test file #1.
+     */
+    @Test
+    public final void testNewBody1() {
+        Program pTest = this.createFromFileTest(FILE_NAME_1);
+        Program pRef = this.createFromFileRef(FILE_NAME_1);
+        Statement bRef = pRef.newBody();
+
+        Statement bTest = pTest.newBody();
+
+        assertEquals(pRef, pTest);
+        assertEquals(bRef, bTest);
+    }
+
+    /**
+     * Tests newBody with program test file #2.
+     */
+    @Test
+    public final void testNewBody2() {
+        Program pTest = this.createFromFileTest(FILE_NAME_2);
+        Program pRef = this.createFromFileRef(FILE_NAME_2);
+        Statement bRef = pRef.newBody();
+
+        Statement bTest = pTest.newBody();
+
+        assertEquals(pRef, pTest);
+        assertEquals(bRef, bTest);
+    }
+
+    /**
+     * Tests newBody with program test file #3.
+     */
+    @Test
+    public final void testNewBody3() {
+        Program pTest = this.createFromFileTest(FILE_NAME_3);
+        Program pRef = this.createFromFileRef(FILE_NAME_3);
+        Statement bRef = pRef.newBody();
+
+        Statement bTest = pTest.newBody();
+
+        assertEquals(pRef, pTest);
+        assertEquals(bRef, bTest);
+    }
+
     //test cases for swapBody method
 
     /**
      * Test swapBody.
+     */
+    @Test
+    public final void testSwapBody() {
+        /*
+         * Setup
+         */
+        Program pTest = this.createFromFileTest(FILE_NAME_1);
+        Program pRef = this.createFromFileRef(FILE_NAME_1);
+        Statement bodyRef = pRef.newBody();
+        Statement bodyTest = pTest.newBody();
+        pRef.swapBody(bodyRef);
+        Statement firstRef = bodyRef.removeFromBlock(0);
+        /* bodyRef now lacks the first statement */
+        pRef.swapBody(bodyRef);
+        /* pRef's body now lacks the first statement */
+        bodyRef.addToBlock(0, firstRef);
+        /* bodyRef now has just the first statement */
+
+        /* Make the reference call, replacing, in pRef, remaining with first: */
+        pRef.swapBody(bodyRef);
+
+        pTest.swapBody(bodyTest);
+        Statement firstTest = bodyTest.removeFromBlock(0);
+        /* bodyTest now lacks the first statement */
+        pTest.swapBody(bodyTest);
+        /* pTest's body now lacks the first statement */
+        bodyTest.addToBlock(0, firstTest);
+        /* bodyTest now has just the first statement */
+
+        /*
+         * The call
+         */
+        pTest.swapBody(bodyTest);
+
+        /*
+         * Evaluation
+         */
+        assertEquals(pRef, pTest);
+        assertEquals(bodyRef, bodyTest);
+    }
+
+    /**
+     * Test swapBody with program test file #2.
      */
     @Test
     public final void testSwapBody2() {
@@ -472,7 +616,7 @@ public abstract class ProgramTest {
     }
 
     /**
-     * Test swapBody.
+     * Test swapBody with program test file #3.
      */
     @Test
     public final void testSwapBody3() {
@@ -513,147 +657,4 @@ public abstract class ProgramTest {
         assertEquals(pRef, pTest);
         assertEquals(bodyRef, bodyTest);
     }
-
-    //SET NAME TESTS
-    /**
-     * set name test 1
-     */
-    @Test
-    public final void testSetName1() {
-        Program pTest = this.createFromFileTest(FILE_NAME_1);
-        Program pRef = this.createFromFileRef(FILE_NAME_1);
-        String newName = "Replacement";
-
-        pRef.setName(newName);
-        pTest.setName(newName);
-
-        assertEquals(pRef, pTest);
-        assertEquals(pRef.name(), pTest.name());
-    }
-
-    /**
-     * set name test 2
-     */
-    @Test
-    public final void testSetName2() {
-        Program pTest = this.createFromFileTest(FILE_NAME_2);
-        Program pRef = this.createFromFileRef(FILE_NAME_2);
-        String newName = "Replacement";
-
-        pRef.setName(newName);
-        pTest.setName(newName);
-
-        assertEquals(pRef, pTest);
-        assertEquals(pRef.name(), pTest.name());
-    }
-
-    /**
-     * set name test 3
-     */
-    @Test
-    public final void testSetName3() {
-        Program pTest = this.createFromFileTest(FILE_NAME_3);
-        Program pRef = this.createFromFileRef(FILE_NAME_3);
-        String newName = "Replacement";
-
-        pRef.setName(newName);
-        pTest.setName(newName);
-
-        assertEquals(pRef, pTest);
-        assertEquals(pRef.name(), pTest.name());
-    }
-
-    //NEW CONTEXT NAMES
-    /**
-     * Test new context 1
-     */
-    @Test
-    public final void testNewContext1() {
-        Program pTest = this.createFromFileTest(FILE_NAME_1);
-        Program pRef = this.createFromFileRef(FILE_NAME_1);
-        Map<String, Statement> cRef = pRef.newContext();
-
-        Map<String, Statement> cTest = pTest.newContext();
-
-        assertEquals(pRef, pTest);
-        assertEquals(cRef, cTest);
-    }
-
-    /**
-     * Test new context 2
-     */
-    @Test
-    public final void testNewContext2() {
-        Program pTest = this.createFromFileTest(FILE_NAME_2);
-        Program pRef = this.createFromFileRef(FILE_NAME_2);
-        Map<String, Statement> cRef = pRef.newContext();
-
-        Map<String, Statement> cTest = pTest.newContext();
-
-        assertEquals(pRef, pTest);
-        assertEquals(cRef, cTest);
-    }
-
-    /**
-     * Test new context 3
-     */
-    @Test
-    public final void testNewContext3() {
-        Program pTest = this.createFromFileTest(FILE_NAME_3);
-        Program pRef = this.createFromFileRef(FILE_NAME_3);
-        Map<String, Statement> cRef = pRef.newContext();
-
-        Map<String, Statement> cTest = pTest.newContext();
-
-        assertEquals(pRef, pTest);
-        assertEquals(cRef, cTest);
-    }
-
-    //NEW BODY TEXTS
-
-    /**
-     * New Body test 1
-     */
-    @Test
-    public final void testNewBody1() {
-        Program pTest = this.createFromFileTest(FILE_NAME_1);
-        Program pRef = this.createFromFileRef(FILE_NAME_1);
-        Statement bRef = pRef.newBody();
-
-        Statement bTest = pTest.newBody();
-
-        assertEquals(pRef, pTest);
-        assertEquals(bRef, bTest);
-    }
-
-    /**
-     * New Body test 2
-     */
-    @Test
-    public final void testNewBody2() {
-        Program pTest = this.createFromFileTest(FILE_NAME_2);
-        Program pRef = this.createFromFileRef(FILE_NAME_2);
-        Statement bRef = pRef.newBody();
-
-        Statement bTest = pTest.newBody();
-
-        assertEquals(pRef, pTest);
-        assertEquals(bRef, bTest);
-    }
-
-    /**
-     * New Body test 3
-     */
-    @Test
-    public final void testNewBody3() {
-        Program pTest = this.createFromFileTest(FILE_NAME_3);
-        Program pRef = this.createFromFileRef(FILE_NAME_3);
-        Statement bRef = pRef.newBody();
-
-        Statement bTest = pTest.newBody();
-
-        assertEquals(pRef, pTest);
-        assertEquals(bRef, bTest);
-    }
-
 }
